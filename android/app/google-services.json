@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "158994892323",
+    "firebase_url": "https://summerterm-914c7-default-rtdb.firebaseio.com",
+    "project_id": "summerterm-914c7",
+    "storage_bucket": "summerterm-914c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158994892323:android:d0bbd002588a5972bd5396",
+        "android_client_info": {
+          "package_name": "com.example.st"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRzlcgkSg6ma9N0-hGv3LXwcTWd15oXgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
