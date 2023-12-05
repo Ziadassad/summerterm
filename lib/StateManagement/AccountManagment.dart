@@ -37,7 +37,7 @@ class AccountManagement extends ChangeNotifier{
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     _user_id = sharedPreferences.getString(USER_ID);
-    _isLogin = sharedPreferences.getBool(LOGIN);
+    _isLogin = sharedPreferences.getBool(LOGIN) ?? false;
 
     notifyListeners();
 

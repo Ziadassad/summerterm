@@ -61,7 +61,6 @@ class _CompaniesState extends State<Companies> {
             }
 
 
-
             return ListView.builder(
                 itemCount: companies.length,
                 itemBuilder: (context, index) {
