@@ -1,6 +1,7 @@
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:st/Screens/pages/student/StepPages/DayOfWorking.dart';
 import 'package:st/Screens/pages/student/StepPages/SelectTeacher.dart';
 import 'package:st/StateManagement/AccountManagment.dart';
 
@@ -32,11 +33,18 @@ class _MyGradsState extends State<MyGrads> {
 
     print(accountManagement?.user_id);
 
+    print(accountManagement!.account!.company);
+    print(accountManagement!.account!.company != null);
+    print(accountManagement!.account!.company != null);
+
     if(accountManagement!.account!.idTeacher != ''){
       activeStep = 1;
     }
-    else if(accountManagement!.account!.idCompany != ''){
+    if(accountManagement!.account!.company != null){
       activeStep = 2;
+    }
+    if(accountManagement!.account!.company?['accept'] == true){
+      activeStep = 3;
     }
 
 
@@ -66,10 +74,10 @@ class _MyGradsState extends State<MyGrads> {
   }
 
   List<Widget> pages = [
-    SelectTeacher(),
+    const SelectTeacher(),
     const SearchForComapny(),
-    Waiting(),
-
+    const Waiting(),
+    const DayOfWorking()
   ];
 
 
@@ -156,11 +164,11 @@ class _MyGradsState extends State<MyGrads> {
             borderRadius: BorderRadius.circular(15),
             child: Opacity(
               opacity: activeStep >= 3 ? 1 : 0.3,
-              child: Image.asset('assets/company.png'),
+              child: Image.asset('assets/stepper/working.png'),
             ),
           ),
           customTitle: const Text(
-            'Dash 4',
+            'day of working',
             textAlign: TextAlign.center,
           ),
         ),

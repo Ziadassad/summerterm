@@ -74,7 +74,7 @@ class _StudentPageState extends State<StudentPage> {
                         child: Column(
                           children: [
                             Expanded(child: Image.asset('assets/woman.png')),
-                            Text("My Teacher", style: TextStyle(fontSize: 20, color: Colors.white),)
+                            const Text("My Teacher", style: TextStyle(fontSize: 20, color: Colors.white),)
                           ],
                         )
                     ),
@@ -88,18 +88,21 @@ class _StudentPageState extends State<StudentPage> {
                     margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: Colors.blue
+                        color: accountProvider.account?.company?['accept']? Colors.blue.withOpacity(0.3) :Colors.blue
                     ),
                     width: 200,
                     height: 200,
                     child: InkWell(
+
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Companies()));
+                          if(!accountProvider.account?.company?['accept']){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const Companies()));
+                          }
                         },
                         child: Column(
                           children: [
                             Expanded(child: Image.asset('assets/company.png')),
-                            Text("Companies", style: TextStyle(fontSize: 20, color: Colors.white),)
+                            const Text("Companies", style: TextStyle(fontSize: 20, color: Colors.white),)
                           ],
                         )
                     ),

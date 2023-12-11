@@ -7,6 +7,9 @@ import '../Cards/CardCompany.dart';
 
 
 class Companies extends StatefulWidget {
+
+
+
   const Companies({super.key});
 
   @override

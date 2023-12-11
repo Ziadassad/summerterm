@@ -29,7 +29,7 @@ class AccountManagement extends ChangeNotifier{
 
   setAccount(Account? account){
     _account = account;
-    notifyListeners();
+    // notifyListeners();
   }
 
 

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../models/Account.dart';
+
 
 class ProfileStudent extends StatefulWidget {
-  const ProfileStudent({super.key});
+  final Account student;
+  const ProfileStudent({super.key, required this.student});
 
   @override
   State<ProfileStudent> createState() => _ProfileStudentState();
@@ -16,22 +19,34 @@ class _ProfileStudentState extends State<ProfileStudent> {
         title: Text("Profile Student"),
       ),
 
-      body: Column(
-        children: [
-          CircleAvatar(
-            radius: 80,
-            backgroundImage: AssetImage('assets/test/st1.png'),
-          ),
+      body: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 80,
+              backgroundImage: AssetImage("${widget.student.image}"),
+            ),
 
-          Text("July", style: TextStyle(fontSize: 25),),
-          SizedBox(height: 5,),
-          Text("Level : 3", style: TextStyle(fontSize: 15),),
+            Text("${widget.student.name}", style: const TextStyle(fontSize: 25),),
+            const SizedBox(height: 5,),
+            Text("Level : ${widget.student.stage}", style: const TextStyle(fontSize: 15),),
 
-          SizedBox(height: 50,),
+            const SizedBox(height: 50,),
 
-          Text("teacher jwan she is lectures Programming Now she is supervisor for this summer term", textAlign: TextAlign.center,)
+            const Text("Department", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            Text("${widget.student.department}", textAlign: TextAlign.center, style: const TextStyle(fontSize: 18),),
 
-        ],
+            const SizedBox(height: 50,),
+
+            const Text("Status", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+
+            Text("${widget.student.department}", textAlign: TextAlign.center, style: const TextStyle(fontSize: 18),)
+
+          ],
+        ),
       ),
     );
   }

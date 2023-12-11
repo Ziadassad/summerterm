@@ -14,9 +14,12 @@ class Waiting extends StatelessWidget {
             child: Image.asset('assets/stepper/waiting.gif')
         ),
 
+
         const SizedBox(height: 20,),
 
-        const Text("Waiting For Approved"),
+        const Text("Waiting For Approved ", textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+        const SizedBox(height: 10,),
+        const Text("please wait from this company you applied thank you for your attention", textAlign: TextAlign.center,),
       ],
     );
   }

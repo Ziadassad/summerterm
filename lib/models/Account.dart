@@ -19,7 +19,7 @@ class Account{
 
 
   String? idTeacher;
-  String? idCompany;
+  Map<dynamic, dynamic>? company;
 
   String? info;
 
@@ -37,7 +37,7 @@ class Account{
       this.grades,
       this.password,
       this.idTeacher,
-      this.idCompany,
+      this.company,
       this.info);
 
   setPosition(String? positions){
@@ -60,7 +60,7 @@ class Account{
         json['grades'] ?? '',
         json['password'] ?? false,
         json['idTeacher'] ?? '',
-        json['idCompany'] ?? '',
+        json['Company'],
         json['info'] ?? ''
     );
   }
@@ -79,7 +79,7 @@ class Account{
       "grades": grades,
       "password": password,
       "idTeacher": idTeacher,
-      "idCompany": idCompany,
+      "Company": company,
       "department": department,
       "info": info
     };

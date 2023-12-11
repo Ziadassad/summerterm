@@ -1,7 +1,9 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Data/Data.dart';
+import '../../../StateManagement/AccountManagment.dart';
 import '../../../models/Account.dart';
 import '../../Cards/CardStudent.dart';
 
@@ -34,41 +36,48 @@ class _ListStudentsState extends State<ListStudents> {
         centerTitle: true,
       ),
 
-      body: Container(
-        margin: EdgeInsets.all(10),
-        child: StreamBuilder(
-          stream: getDB.onValue,
-          builder: (context, snapshot) {
+      body: Consumer<AccountManagement>(
 
-            if(snapshot.hasData){
-              List<Account> companies = [];
-              List<dynamic> list = [];
-              List<dynamic> listKey = [];
-              list.clear();
+          builder: (BuildContext context, AccountManagement value, Widget? child) {
 
-              Map<dynamic, dynamic> map = snapshot.data!.snapshot.value as Map;
+          return Container(
+            margin: EdgeInsets.all(10),
+            child: StreamBuilder(
+              stream: getDB.onValue,
+              builder: (context, snapshot) {
 
-              list = map.values.toList();
-              listKey = map.keys.toList();
+                if(snapshot.hasData){
+                  List<Account> students = [];
+                  List<dynamic> list = [];
+                  List<dynamic> listKey = [];
+                  list.clear();
 
-              for (int i = 0; i < list.length; i++) {
-                Account t = Account.fromJson(list[i]);
-                t.id = listKey[i];
-                if(t.name == Positions.company.toString()){
-                  companies.add(t);
-                }
-              }
-              return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 10,
-                  itemBuilder: (context, index){
-                    return CardStudent();
+                  Map<dynamic, dynamic> map = snapshot.data!.snapshot.value as Map;
+
+                  list = map.values.toList();
+                  listKey = map.keys.toList();
+
+                  for (int i = 0; i < list.length; i++) {
+                    Account t = Account.fromJson(list[i]);
+                    t.id = listKey[i];
+                    print("${value.user_id! } ${t.idTeacher}");
+                    if(value.user_id == t.idTeacher && t.positions == Positions.student.toString()){
+                      students.add(t);
+                    }
                   }
-              );
-            }
-            return const Center(child: CircularProgressIndicator(),);
-          }
-        ),
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: students.length,
+                      itemBuilder: (context, index){
+                        return CardStudent(student: students[index],);
+                      }
+                  );
+                }
+                return const Center(child: CircularProgressIndicator(),);
+              }
+            ),
+          );
+        }
       ),
     );
   }

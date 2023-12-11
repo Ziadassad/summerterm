@@ -61,19 +61,8 @@ class _LoginPageState extends State<LoginPage> {
             Provider.of<AccountManagement>(context, listen: false).setLoginAccount(key);
             print("Yes");
 
-            if(datas['position'] == Positions.student.toString()){
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const HomePage(),
-              ));
-            }
-            else if(datas['position'] == Positions.teacher.toString()){
-
-            }
-            else if(datas['position'] == Positions.company.toString()){
-
-            }
-
-
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+              builder: (context) => const HomePage(),), (Route<dynamic> route) => false);
           }
 
         });

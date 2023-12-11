@@ -37,9 +37,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   List levels = [
-    StudentPage(),
-    TeacherPage(),
-    CompanyPage()
+    const StudentPage(),
+    const TeacherPage(),
+    const CompanyPage()
   ];
 
   @override
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context){
                 return [
 
-                  PopupMenuItem<int>(
+                  const PopupMenuItem<int>(
                     value: 0,
                     child: Text("Logout"),
                   ),
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
               onSelected:(value){
                 if(value == 0){
                   Provider.of<AccountManagement>(context, listen: false).setLogoutAccount();
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                 }
               }
           ),
@@ -91,11 +91,14 @@ class _HomePageState extends State<HomePage> {
 
                 Map<dynamic, dynamic> map = snapshot.data!.snapshot.value as Map;
 
-                print(map[value.user_id]);
+                // print(map[value.user_id]);
 
                 Account account = Account.fromJson(map[value.user_id]);
 
                  int level = getAccount(account);
+
+                 print("dddd");
+
 
                 return levels[level];
               }
@@ -113,8 +116,6 @@ class _HomePageState extends State<HomePage> {
 
     Provider.of<AccountManagement>(context, listen: false).setAccount(account);
 
-
-    print("zzzzzzzzzz");
     print(account.positions);
 
     switch(account.positions){
