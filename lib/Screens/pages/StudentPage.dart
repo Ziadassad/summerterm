@@ -88,7 +88,7 @@ class _StudentPageState extends State<StudentPage> {
                     margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: accountProvider.account?.company?['accept']? Colors.blue.withOpacity(0.3) :Colors.blue
+                        color: accountProvider.account?.company?['accept'] ?? false ? Colors.blue.withOpacity(0.3) :Colors.blue
                     ),
                     width: 200,
                     height: 200,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:st/Screens/pages/student/MyTearcher.dart';
 
 import '../../Companies.dart';
 
@@ -19,13 +20,13 @@ class SelectTeacher extends StatelessWidget {
         const Text("In this step you need Select your Teacher to be your supervisor in this summer term"
             " \n if you are need any help or equations \n",
           textAlign: TextAlign.center, style: TextStyle(fontSize: 18),),
-        const Text("Click here for searching companies : ", style: TextStyle(fontWeight: FontWeight.w300),),
+        const Text("Click here to Choose your teacher : ", style: TextStyle(fontWeight: FontWeight.w300),),
 
         const SizedBox(height: 50,),
 
         InkWell(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Companies()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const MyTeacher()));
           },
           child: Container(
             width: 200,
@@ -34,7 +35,7 @@ class SelectTeacher extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: Colors.blueAccent
             ),
-            child: const Center(child: Text("Companies", style: TextStyle(fontSize: 18, color: Colors.white),)),
+            child: const Center(child: Text("Choose your teacher", style: TextStyle(fontSize: 18, color: Colors.white),)),
           ),
         )
       ],

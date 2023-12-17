@@ -58,7 +58,7 @@ class _CompaniesState extends State<Companies> {
             for (int i = 0; i < list.length; i++) {
               Account t = Account.fromJson(list[i]);
               t.id = listKey[i];
-              if(t.positions == Positions.company.toString()){
+              if(t.positions == Positions.company.toString() && t.is_verified!){
                 companies.add(t);
               }
             }

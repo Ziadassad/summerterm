@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:st/Screens/pages/company/ActiveStudent.dart';
 import 'package:st/Screens/pages/company/ProfileCompany.dart';
 import 'package:st/Screens/pages/company/StudentRequst.dart';
 import 'package:st/Screens/pages/student/MyGrads.dart';
@@ -96,12 +97,12 @@ class _CompanyPageState extends State<CompanyPage> {
                       height: 200,
                       child: InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Companies()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ActiveStudent()));
                           },
                           child: Column(
                             children: [
                               Expanded(child: Image.asset('assets/tick_1161751.png')),
-                              Text("Companies", style: TextStyle(fontSize: 20, color: Colors.white),)
+                              const Text("Active Student", style: TextStyle(fontSize: 20, color: Colors.white),)
                             ],
                           )
                       ),

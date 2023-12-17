@@ -20,8 +20,10 @@ class Account{
 
   String? idTeacher;
   Map<dynamic, dynamic>? company;
+  Map<dynamic, dynamic>? daysOFActive;
 
   String? info;
+  bool? is_verified;
 
 
   Account(
@@ -38,7 +40,10 @@ class Account{
       this.password,
       this.idTeacher,
       this.company,
-      this.info);
+      this.info,
+      this.daysOFActive,
+      this.is_verified
+      );
 
   setPosition(String? positions){
     this.positions = positions;
@@ -61,7 +66,9 @@ class Account{
         json['password'] ?? false,
         json['idTeacher'] ?? '',
         json['Company'],
-        json['info'] ?? ''
+        json['info'] ?? '',
+        json['daysOFActive'],
+        json['isVerified'] ?? false
     );
   }
 
@@ -81,7 +88,9 @@ class Account{
       "idTeacher": idTeacher,
       "Company": company,
       "department": department,
-      "info": info
+      "info": info,
+      "daysOFActive": daysOFActive,
+      "isVerified": is_verified
     };
   }
 

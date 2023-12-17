@@ -26,6 +26,9 @@ dependencies:
   overlay_loader_with_app_icon: ^0.0.3
   quickalert: ^1.0.2
   shared_preferences: ^2.2.2
+  bottom_picker: ^2.3.3
+  time_range_picker: ^2.2.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

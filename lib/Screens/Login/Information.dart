@@ -235,8 +235,6 @@ class _InformationState extends State<Information> {
 
     var image = await uploadImage();
 
-    print(image);
-
     if(image != false){
       myAccount?.image = image.toString();
     }
@@ -317,7 +315,6 @@ class _InformationState extends State<Information> {
     // if (imageType != 1) back = true;
     if (i == 0) {
       image = await SelectMedia().getSingleImage(context, ImageSource.camera, back);
-      print(image);
     } else {
       image = await SelectMedia().getSingleImage(context, ImageSource.gallery, back);
     }

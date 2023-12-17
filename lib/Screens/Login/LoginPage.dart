@@ -40,6 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   Duration get loginTime => const Duration(milliseconds: 2250);
 
 
+  bool isLogin = false;
   Future<String?> _authUser(LoginData data) {
 
     DatabaseReference ref = FirebaseDatabase.instance.ref().child("users");
@@ -59,20 +60,23 @@ class _LoginPageState extends State<LoginPage> {
 
           if(datas['email'] == data.name && datas['password'] == data.password){
             Provider.of<AccountManagement>(context, listen: false).setLoginAccount(key);
-            print("Yes");
+
+            isLogin = true;
 
             Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
               builder: (context) => const HomePage(),), (Route<dynamic> route) => false);
           }
 
+
         });
 
       });
 
-      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-      //   builder: (context) => const HomePage(),
-      // ));
-      return null;
+      if(isLogin){
+        return null;
+      }
+
+      return 'Account Not Founded';
 
     });
   }
@@ -92,6 +96,8 @@ class _LoginPageState extends State<LoginPage> {
         data.additionalSignupData?['department'],
         data.additionalSignupData?['stage'], null, null,
         data.password,
+       null,
+       null,
        null,
        null,
       null

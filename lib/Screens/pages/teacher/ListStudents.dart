@@ -69,7 +69,7 @@ class _ListStudentsState extends State<ListStudents> {
                       shrinkWrap: true,
                       itemCount: students.length,
                       itemBuilder: (context, index){
-                        return CardStudent(student: students[index],);
+                        return CardStudent(student: students[index], accept: false,);
                       }
                   );
                 }

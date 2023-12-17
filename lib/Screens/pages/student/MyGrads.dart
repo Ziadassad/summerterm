@@ -1,10 +1,13 @@
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:st/Screens/pages/student/StepPages/DayOfWorking.dart';
+import 'package:st/Screens/pages/student/StepPages/Finish.dart';
 import 'package:st/Screens/pages/student/StepPages/SelectTeacher.dart';
 import 'package:st/StateManagement/AccountManagment.dart';
 
+import '../../../models/DayOfActive.dart';
 import 'StepPages/SearchForCompany.dart';
 import 'StepPages/Waiting.dart';
 
@@ -22,6 +25,8 @@ class _MyGradsState extends State<MyGrads> {
 
 
   AccountManagement? accountManagement;
+
+  bool? isFinish = false;
 
 
   @override
@@ -47,6 +52,26 @@ class _MyGradsState extends State<MyGrads> {
       activeStep = 3;
     }
 
+    List<DayActive> activeList = [];
+    List<dynamic> list = [];
+    list.clear();
+
+    if(accountManagement!.account!.daysOFActive != null){
+      Map<dynamic, dynamic> map = accountManagement!.account!.daysOFActive as Map;
+
+      list = map.values.toList();
+      for (int i = 0; i < list.length; i++) {
+        DayActive t = DayActive.fromJson(list[i]);
+        activeList.add(t);
+      }
+
+      if(activeList.length >= 30){
+        isFinish = true;
+        activeStep = 4;
+      }
+    }
+
+    print(accountManagement!.account!.daysOFActive);
 
   }
 
@@ -63,7 +88,7 @@ class _MyGradsState extends State<MyGrads> {
           stepper(),
 
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: const EdgeInsets.symmetric( vertical: 10),
             width: double.infinity,
             child: pages[activeStep],
           )
@@ -77,7 +102,8 @@ class _MyGradsState extends State<MyGrads> {
     const SelectTeacher(),
     const SearchForComapny(),
     const Waiting(),
-    const DayOfWorking()
+    const DayOfWorking(),
+    const Finish()
   ];
 
 
@@ -106,7 +132,7 @@ class _MyGradsState extends State<MyGrads> {
   stepper(){
     return EasyStepper(
       steppingEnabled: false,
-      // enableStepTapping: false,
+      enableStepTapping: false,
       activeStep: activeStep,
       stepShape: StepShape.rRectangle,
       stepBorderRadius: 15,
@@ -117,7 +143,8 @@ class _MyGradsState extends State<MyGrads> {
       finishedStepTextColor: Colors.green,
       finishedStepBackgroundColor: Colors.green,
       activeStepIconColor: Colors.green,
-      showLoadingAnimation: activeStep != 0 ? true : false,
+      showLoadingAnimation: false,
+      // showLoadingAnimation: activeStep != 0 ? true : false,
 
       steps: [
         EasyStep(
@@ -174,16 +201,19 @@ class _MyGradsState extends State<MyGrads> {
         ),
 
         EasyStep(
-          customStep: ClipRRect(
+          customStep:
+          ClipRRect(
+
             borderRadius: BorderRadius.circular(15),
             child: Opacity(
               opacity: activeStep >= 4 ? 1 : 0.3,
-              child: Image.asset('assets/company.png'),
+              child: Image.asset('assets/derp.gif'),
             ),
           ),
           customTitle: const Text(
-            'Dash 4',
+            'Finish',
             textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.green),
           ),
         ),
       ],

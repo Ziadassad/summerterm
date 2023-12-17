@@ -7,14 +7,14 @@ import '../../../StateManagement/AccountManagment.dart';
 import '../../../models/Account.dart';
 import '../../Cards/CardStudent.dart';
 
-class StudentRequst extends StatefulWidget {
-  const StudentRequst({super.key});
+class ActiveStudent extends StatefulWidget {
+  const ActiveStudent({super.key});
 
   @override
-  State<StudentRequst> createState() => _StudentRequstState();
+  State<ActiveStudent> createState() => _ActiveStudentState();
 }
 
-class _StudentRequstState extends State<StudentRequst> {
+class _ActiveStudentState extends State<ActiveStudent> {
 
   late DatabaseReference dbCategory;
   late Query getDB;
@@ -33,7 +33,7 @@ class _StudentRequstState extends State<StudentRequst> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Request Student"),
+        title: const Text("Active Students"),
         centerTitle: true,
       ),
 
@@ -58,27 +58,25 @@ class _StudentRequstState extends State<StudentRequst> {
                       list = map.values.toList();
                       listKey = map.keys.toList();
 
-                      // print(map);
-
-
                       for (int i = 0; i < list.length; i++) {
+
                         Account t = Account.fromJson(list[i]);
                         t.id = listKey[i];
                         // print("${value.user_id! } ${t.company?['idCompany']}");
                         if(value.user_id! == t.company?['idCompany'] &&
                             t.positions == Positions.student.toString() &&
-                            t.company?['accept'] != true
-                        ){
+                            t.company?['accept'] == true)
+                        {
                           students.add(t);
                         }
+
                       }
-                      // print("yyyyyyy");
-                      // print(students[0].company);
+
                       return ListView.builder(
                           shrinkWrap: true,
                           itemCount: students.length,
                           itemBuilder: (context, index){
-                            return CardStudent(student: students[index], accept: false,);
+                            return CardStudent(student: students[index], accept: true,);
                           }
                       );
                     }
